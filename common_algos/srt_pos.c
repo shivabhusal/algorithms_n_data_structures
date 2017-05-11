@@ -37,6 +37,11 @@ void test_runner(){
   assert(strpos(str1, "hari") ==  -1, "Pos of 'hari' should be -1");
   assert(strpos(str1, "my") ==  0, "Pos of 'my' should be 0");
 
+
+  assert(strpos(str1, "sheva") ==  -1, "Pos of 'sheva' should be -1");
+  assert(strpos(str1, "s") ==  9, "Pos of 'my' should be 9");
+  assert(strpos(str1, "neme") ==  -1, "Pos of 'neme' should be -1");
+
 }
 
 int strlen(char str[]){
