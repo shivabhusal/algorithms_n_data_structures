@@ -26,8 +26,11 @@ void test_runner(){
   char str3[] = "1234567";
 
   strrev(str1);
-  assert_eq_string(str1, "avihs", "'shiva' should be reversed as 'avihs'");
-  assert_eq_string(str2, "madam", "'madam' should be reversed as 'madam'");
-  assert_eq_string(str3, "1234567", "'1234567' should be reversed as '7654321'");
+  strrev(str2);
+  strrev(str3);
+
+  assert_eq_string("avihs", str1, "'shiva' should be reversed as 'avihs'");
+  assert_eq_string("madam", str2, "'madam' should be reversed as 'madam'");
+  assert_eq_string("7654321", str3, "'1234567' should be reversed as '7654321'");
 
 }
