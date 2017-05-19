@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef struct date{
+typedef struct{
   int year;
   int month;
   int day;
-}DATE;
+} DATE;
 
-typedef struct time{
+typedef struct{
   int hour;
   int minute;
   int second;
@@ -94,13 +94,14 @@ void main(){
 
 // Passing by value
 DATETIME modify_by_value(DATETIME new_date){
-  new_date.time.hour = 23;
+  new_date.time.hour   = 23;
   new_date.time.minute = 24;
   new_date.time.second = 25;
 
   return new_date;
 }
 
+// Passing by reference
 void modify_by_reference(DATETIME *ptr_to_date){
   ptr_to_date->time.hour   = 02;
   ptr_to_date->time.minute = 03;

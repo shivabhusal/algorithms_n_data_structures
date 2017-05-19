@@ -172,4 +172,16 @@ such cases, the value of `a` could be anything unpredictable from machine to mac
 Basically a stack is a `C` Structure containing two objects. One is an array which will act as data store and other is an 
 integer to point the top most data of the array. Only two operations could be performed i.e. `push` and `pop`. After every 
 action, the pointer most point to the top most data. You can consider it as a stack of books you see in library.
+**Simple Example:**  
+```c
+#define SIZE=100
+struct stack{
+  int top_index;
+  int items[SIZE];
+}
+```
+This is a `stack` that can hold only integers. We are yet to define the methods to insert and eject the data to and fro. The 
+limitation of only capable to store integer limits its usability. Users should be able to store any type they want. There 
+comes the use of `union` which will let you store data of any type. Implementation of high level languages like `Ruby` and 
+`Python` also use `union`s to feature dynamic types.
 
