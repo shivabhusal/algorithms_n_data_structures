@@ -172,7 +172,7 @@ such cases, the value of `a` could be anything unpredictable from machine to mac
 Basically a stack is a `C` Structure containing two objects. One is an array which will act as data store and other is an 
 integer to point the top most data of the array. Only two operations could be performed i.e. `push` and `pop`. After every 
 action, the pointer most point to the top most data. You can consider it as a stack of books you see in library.
-**Simple Example:**  
+**Simple Homogenous Example:**  
 ```c
 #define SIZE=100
 struct stack{
@@ -184,4 +184,36 @@ This is a `stack` that can hold only integers. We are yet to define the methods 
 limitation of only capable to store integer limits its usability. Users should be able to store any type they want. There 
 comes the use of `union` which will let you store data of any type. Implementation of high level languages like `Ruby` and 
 `Python` also use `union`s to feature dynamic types.
+
+### Heterogenous Stack 
+A heterogenous stack data structure has much wider use cases than its counter part. You can store any type of data in that 
+stack; you achieve that with the help of `union` keyword. You define a union that has all the possible data-type you would 
+like to support. While defining it, compiler will allocate the memory that will suffice the largest member as defined earlier.
+**Example:**
+```c
+typedef struct{
+  int etype;
+  union{
+    int   ival;
+    char *sval; // Pointer to a string
+    float fval;
+  } element;
+} STACK_ELEMENT;
+
+typedef struct {
+  int top;
+  STACK_ELEMENT items[SIZE];
+} STACK;
+
+  STACK store = {EMPTY_INDICATOR}; // will set top = -1 to indicate stack is empty
+
+  STACK_ELEMENT int_data    = {INT,   {.ival = 1920}};
+  STACK_ELEMENT float_data  = {FLOAT, {.fval = 22990.12}};
+  STACK_ELEMENT string_data = {STR,   {.sval = "My name is shiva"}};
+  
+  push(&store, int_data);
+  push(&store, float_data);
+  push(&store, string_data);
+```
+> Please see the source code for more information.
 
