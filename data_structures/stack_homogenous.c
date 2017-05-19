@@ -21,7 +21,7 @@ void main(){
 }
 
 int push(STACK *store, int data){
-  if(store->top == SIZE){
+  if(store->top == SIZE-1){
     // StackOverflow detected;
     //  Instead you can throw an exception
     return FALSE;
@@ -41,7 +41,7 @@ int pop(STACK *store){
 }
 
 void test_runner(void){
-  STACK store = {-1}; // will set top = -1 to indicate stack is empty
+  STACK store = {EMPTY_INDICATOR}; // will set top = -1 to indicate stack is empty
   assert(push(&store, 1) == TRUE);
   push(&store, 2);
   push(&store, 3);
@@ -50,7 +50,7 @@ void test_runner(void){
   assert(pop(&store) == 2);
   assert(pop(&store) == 1);
 
-  STACK store2 = {200};
+  STACK store2 = {SIZE-1};
   assert(push(&store2, 12) == FALSE);
 }
 
