@@ -191,6 +191,10 @@ stack; you achieve that with the help of `union` keyword. You define a union tha
 like to support. While defining it, compiler will allocate the memory that will suffice the largest member as defined earlier.
 **Example:**
 ```c
+#define INT   1
+#define FLOAT 2
+#define STR   3
+
 typedef struct{
   int etype;
   union{
@@ -217,3 +221,38 @@ typedef struct {
 ```
 > Please see the source code for more information.
 
+
+## Graph
+Graph is an Abstract Data Type to model the undirected(bi-directional) and  directed(uni-directed) graphs in mathematics. It consists of vertices(nodes) and lines connecting them 
+known as `edge`. Edges are represented as `(u,v)` indicating an edge connecting from vertex `u` to `v`; and the pair is ordered so `(u,v)` and `(v,u)` are not same.
+
+### Reallife usecases
+Graphs are used extensively to indicating path/road in maps, circuit networks and in Social networking apps. See [this for more 
+applications](http://en.wikipedia.org/wiki/Graph_theory#Applications): 
+
+### Graph representations
+Can be represented in two forms
+- Adjacency Matrix
+- Adjacency List
+
+#### Adjacency Matrix
+![Adjacency Matrix Representation](img/adjacency_matrix_representation.png)
+
+#### Adjacency List
+![Adjacency List Representation](img/adjacency_list_representation.png)
+
+### Operations
+The basic operations provided by a graph data structure G usually include:
+- `adjacent(G, x, y)`: tests whether there is an edge from the vertex x to the vertex y;
+- `neighbors(G, x)`: lists all vertices y such that there is an edge from the vertex x to the vertex y;
+- `add_vertex(G, x)`: adds the vertex x, if it is not there;
+- `remove_vertex(G, x)`: removes the vertex x, if it is there;
+- `add_edge(G, x, y)`: adds the edge from the vertex x to the vertex y, if it is not there;
+- `remove_edge(G, x, y)`: removes the edge from the vertex x to the vertex y, if it is there;
+- `get_vertex_value(G, x)`: returns the value associated with the vertex x;
+- `set_vertex_value(G, x, v)`: sets the value associated with the vertex x to v.
+
+Structures that associate values to the edges usually also provide:
+
+- `get_edge_value(G, x, y)`: returns the value associated with the edge (x, y);
+- `set_edge_value(G, x, y, v)`: sets the value associated with the edge (x, y) to v.
