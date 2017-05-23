@@ -2,18 +2,18 @@
 Contains all common algorithm theories and implementation in various languages like C, Ruby, etc
 
 # Requirements
-This library uses `CUnit` testing Framework to write testcases.
+This library uses `CSpec` testing Framework to write testcases. The CSpec is a new concept, we are planning to
+take this project forward and extract out as a separate library.
+
 ### Installation
-
-```
-sudo apt-get install libcunit1 libcunit1-doc libcunit1-dev
-```
-
-Then in your test.c
+In your test.c
 ```c
-#include <CUnit/CUnit.h>
+// If your file is at /sorting/algo_spec.c then
+#include '../../cspec/cspec.c'
+// assuming like algorithms/cspec/cspec.c
 ```
-And finally, you must add the flag –lcunit to the gcc command (at the end)
+
+And finally
 ```bash
-gcc  -o test test.c  -lcunit
+gcc  -o test.out test_spec.c
 ```
