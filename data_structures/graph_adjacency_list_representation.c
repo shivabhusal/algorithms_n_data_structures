@@ -92,3 +92,13 @@ void main(){
   display(&graph);
 }
 
+/* Output
+
+The number of vertices is 5
+For verted `0` --> 1 --> 4 --> 2
+For verted `1` --> 2 --> 4
+For verted `2` --> 4
+For verted `3` --> 4
+For verted `4` --> 0 --> 2 --> 1
+
+*/
