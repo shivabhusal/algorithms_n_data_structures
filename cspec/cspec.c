@@ -15,7 +15,6 @@ void assert(char result, char message[]){
   }
 }
 
-
 void assert_eq_int_array(int expectation[], int reality[], int len, char message[]){
   int i;
   for(i=0; i<len; i++){
@@ -33,7 +32,6 @@ void assert_eq_int_array(int expectation[], int reality[], int len, char message
 
   printf("\n----------------------------------------------------------------------------------\n");
 }
-
 
 void assert_eq_string(char expectation[], char reality[], char message[]){
   int i;
