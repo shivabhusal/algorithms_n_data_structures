@@ -1,5 +1,16 @@
+/*
+  Author        :Shiva Bhusal
+  blog    	    :cbabhusal.wordpress.com
+  twitter 	    :@shivabhusal
+  stackoverflow :illusionist
+  
+  Note: This example works for anynumber of inputs
+  Algorithmic completely is O(n)
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 void assert_eq_int_array(int expectation[], int reality[], int len, char message[]);
 void print_array(int arr[], int len);
@@ -8,60 +19,71 @@ void test_runner();
 
 typedef struct {
   int* array;
-  int length;
+  int  length;
+  int  common_diff;
 } Result;
 
 Result* findAP(int* array, int len);
 
+void APFinder(){
+  int *array, i, num, diff;
+  
+  printf("Enter the size of an array \n");
+  scanf("%d", &num);
+  
+  array = malloc(sizeof(int)*num);
+  
+  printf("Enter the elements of the array\n");
+  for (i = 0; i < num; i++) {
+      scanf("%d", &array[i]);
+  }
+  
+  Result* result = findAP(array, num); 
+  printf("From the array: ");
+  print_array(array, num);
+  
+  printf("\nThe Longest Arithmetic Progression is: ");
+  print_array(result->array, result->length);
+  printf("\nThe common difference is %d", result->common_diff);
+  
+}
 
 void main() {
-    int *array, i, num, diff;
-    
-    printf("Enter the size of an array \n");
-    scanf("%d", &num);
-    
-    array = malloc(sizeof(int)*num);
-    
-    printf("Enter the elements of the array\n");
-    for (i = 0; i < num; i++) {
-        scanf("%d", &array[i]);
-    }
-    
-    Result* result = findAP(array, num); 
-    printf("From the array: ");
-    print_array(array, num);
-    
-    printf("\nThe Longest Arithmetic Progression is: ");
-    print_array(result->array, result->length);
+    APFinder();
 
     // Note: Activate this if you wish to run the test-suite
     // test_runner();
 }
 
 Result* findAP(int* array, int len){
-    int* largest = malloc(sizeof(int)*len);
+    int* largest   = malloc(sizeof(int)*len);
     int largestLen = 0;
+    int the_diff   = 0;
     
     int temp[len];
     int lengthTemp = 0;
     
-    for(int i=1; i< len-1; i++){
-      int lastDiff = array[i-1] - array[i];
-      int diff1 = array[i] - array[i+1];
-      if(diff1 == lastDiff ){
-          temp[lengthTemp] = array[i-1];
+    for(int i = 1; i < len-1; i++){
+      int lastDiff = array[i]   - array[i-1];
+      int diff1    = array[i+1] - array[i];
+      
+      if(diff1 == lastDiff){
+          temp[lengthTemp]   = array[i-1];
           temp[lengthTemp+1] = array[i];
-          temp[lengthTemp+2]   = array[i+1];
+          temp[lengthTemp+2] = array[i+1];
           lengthTemp++;
-          if((i == len -2) && largestLen < lengthTemp){
+          
+          if((i == len-2) && largestLen < lengthTemp){
             cp_array(temp, largest, len);
             largestLen = lengthTemp;
+            the_diff   = lastDiff;
           }
           
       }else{
         if(largestLen < lengthTemp){
           cp_array(temp, largest, len);
           largestLen = lengthTemp;
+          the_diff   = lastDiff;
         }
         lengthTemp = 0;
       }
@@ -69,30 +91,32 @@ Result* findAP(int* array, int len){
     
     Result* result = malloc(sizeof(Result));
     result->array  = largest;
-    result->length =  largestLen + 2;
+    result->length = largestLen + 2;
+    result->common_diff = the_diff;
     return result;
 }
 
 void test_runner(){
   int array[] = {5,1,2,4,6,8,12,16};
-  int size = sizeof(array)/sizeof(array[0]);
-  int exp[] = {2,4,6,8};
+  int size    = sizeof(array)/sizeof(array[0]);
+  int exp[]   = {2,4,6,8};
   
   assert_eq_int_array(exp,findAP(array, size)->array, 4, "Should be equal");
   
   
   int array1[] = {5,1,2,4,6,8,10,12,16};
-  int size1 = sizeof(array1)/sizeof(array1[0]);
-  int exp1[] = {2,4,6,8,10,12};
+  int size1    = sizeof(array1)/sizeof(array1[0]);
+  int exp1[]   = {2,4,6,8,10,12};
   
   assert_eq_int_array(exp1,findAP(array1, size1)->array, 6, "Should be equal");
 
 
   int array2[] = {5,1,2,4,6,8,12,16,20,24,28};
-  int size2 = sizeof(array2)/sizeof(array2[0]);
-  int exp2[] = {8,12,16,20,24,28};
+  int size2    = sizeof(array2)/sizeof(array2[0]);
+  int exp2[]   = {8,12,16,20,24,28};
   
   assert_eq_int_array(exp2,findAP(array2, size2)->array, 6, "Should be equal");
+  assert(findAP(array2, size2)->common_diff  == 4);
 
 }
 
