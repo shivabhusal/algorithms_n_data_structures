@@ -48,6 +48,14 @@ void delete(struct Node* headNode, struct Node* targetNode){
   free(targetNode);
 }
 
+struct Node* insertAfter(struct Node* targetNode, int data){
+  struct Node* newNode = malloc(sizeof(struct Node));
+  newNode->data = data;
+  newNode->next = targetNode->next;
+  targetNode->next = newNode;
+
+  return newNode;
+}
 
 void testRunner();
 
@@ -82,5 +90,11 @@ void testRunner(){
 
   assert(headNode->next == oldHeadNode);
   assert(findParentOf(headNode, oldHeadNode) == headNode);
+
+  // Insert operation
+  struct Node* node3 = insertAfter(node2, 15);
+  assert(node2->next == node3);
+  assert(node2->next->data == 15);
+
 }
 
