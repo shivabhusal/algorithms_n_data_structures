@@ -7,10 +7,16 @@ struct Node{
   struct Node* next;
 };
 
-//void prepend(Node* child, int data){
-//
-//}
 
+struct Node* prepend(struct Node* oldHeadNode, int sperm){
+  struct Node* newHeadNode = malloc(sizeof(struct Node));
+
+  newHeadNode->data = sperm;
+  newHeadNode->next = oldHeadNode;
+
+  // After 9 months
+  return newHeadNode;
+}
 
 struct Node* append(struct Node* parent, int sperm){
   struct Node* child = malloc(sizeof(struct Node));
@@ -50,24 +56,31 @@ void main(){
 }
 
 void testRunner(){
-  struct Node headNode = {.data=12};
-  assert(headNode.data == 12);
+  struct Node* headNode = malloc(sizeof(struct Node));
+  headNode->data = 12;
+  assert(headNode->data == 12);
 
-  struct Node* node1 = append(&headNode, 13);
+  struct Node* node1 = append(headNode, 13);
   assert(node1->data == 13);
-  assert(headNode.next   == node1);
+  assert(headNode->next   == node1);
 
   struct Node* node2 = append(node1, 14);
   assert(node2->data == 14);
   assert(node1->next == node2);
 
   // Delete Node1
-  assert(findParentOf(&headNode, node1) == &headNode);
-  assert(findParentOf(&headNode, node2) == node1);
+  assert(findParentOf(headNode, node1) == headNode);
+  assert(findParentOf(headNode, node2) == node1);
 
-  delete(&headNode, node1);
+  delete(headNode, node1);
   assert(node1->data != 13);
-  assert(headNode.next == node2);
+  assert(headNode->next == node2);
 
+  // Prepending nodes
+  struct Node* oldHeadNode = headNode;
+  headNode = prepend(headNode, 11);
+
+  assert(headNode->next == oldHeadNode);
+  assert(findParentOf(headNode, oldHeadNode) == headNode);
 }
 
