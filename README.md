@@ -1,4 +1,8 @@
-# algorithms
+# Algorithms and Data Structures
+
+## Table of Contents
+- [Data Structures](data_structures/)
+
 ## Intent
 I wish to include as more algoritms and DataStructure implementations as possible. I need your aid because it should be a community effor. Anybody can be benifited from this repository.  
 
