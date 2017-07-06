@@ -16,19 +16,20 @@ take this project forward and extract out as a separate library. For simpler ass
 For implementations libraries
 In your test.c
 ```c
-// If your file is at /sorting/algo_spec.c then
-// include `cspec.c` if you wish to assert using methods defined in that library
-#include '../../cspec/cspec.c'
-// assuming like algorithms/cspec/cspec.c
+  // If your file is at /sorting/algo_spec.c then
+  // include `cspec.c` if you wish to assert using methods defined in that library
+  
+  #include '../../cspec/cspec.c'
+  // assuming like algorithms/cspec/cspec.c
 ```
 
 And finally
 ```sh
-# .out for linux users, .exe for windows users
-$ gcc  -o test.out test_spec.c
+  # .out for linux users, .exe for windows users
+  $ gcc  -o test.out test_spec.c
 
-# To execute
-$ ./test.out
+  # To execute
+  $ ./test.out
 ```
 
 # Contributions
